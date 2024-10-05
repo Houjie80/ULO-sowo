@@ -113,7 +113,7 @@ jobs:
           mkdir -p ./artifact
           cp -rf ./out/${{ inputs.devices }}/* ./artifact/
           cp -rf ./rootfs/*.tar.gz ./artifact/
-          cp -rf ./$(cat ${rootfs_path}/rootfs.log | cut -d '-' -f1-3)./artifact/$(cat ${rootfs_path}/rootfs.log | cut -d '-' -f1-3).tar.gz
+          cp -rf ./$(cat ${rootfs_path}/rootfs.log | cut -d '-' -f1-3) ./artifact/$(cat ${rootfs_path}/rootfs.log | cut -d '-' -f1-3).tar.gz
           
       - name: Delivering Package
         uses: actions/upload-artifact@v3
