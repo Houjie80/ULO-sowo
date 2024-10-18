@@ -91,8 +91,6 @@ jobs:
           sudo -E apt-get -y install wget python3
           sudo pip3 install gdown
           sudo timedatectl set-timezone "$TZ"
-          sudo mkdir -p /workdir/build
-          sudo mkdir -p /workdir/rootfs
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
           wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_20.04_amd64.deb"
                     
@@ -104,6 +102,10 @@ jobs:
       - name: Mengatur tanggal
         id: date
         run: echo "date=$(date +'%d-%m-%y %H:%M:%S')" >> $GITHUB_OUTPUT
+      - name: buat folder      
+         run:|
+            mkdir -p ./build
+            mkdir -p ./rootfs
    
           
       - name: Download file ${{ github.event.inputs.type_file }}
