@@ -102,13 +102,17 @@ jobs:
       - name: Mengatur tanggal
         id: date
         run: echo "date=$(date +'%d-%m-%y %H:%M:%S')" >> $GITHUB_OUTPUT
-      
+
+      - name: Unduh dan pindahkan rootfs tambahan
+        run: |
+          echo "Mulai mengunduh rootfs tambahan..."
+          mkdir -p ./build
+          
+          echo "Membuat direktori rootfs jika belum ada..."
+          mkdir -p ./rootfs
           
       - name: Download file ${{ github.event.inputs.type_file }}
         run: |
-          mkdir -p ./build
-          mkdir -p ./rootfs
-          
            if [ $(echo ${{ github.event.inputs.img_url }} | grep "drive.") ]; then
            if [ $(echo ${{ github.event.inputs.img_url }} | awk -F "/" '{print $6}') ]; then
             link_gdrive=$(echo ${{ github.event.inputs.img_url }} | awk -F "/" '{print $6}')
