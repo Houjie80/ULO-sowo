@@ -106,8 +106,9 @@ jobs:
           
       - name: Download file ${{ github.event.inputs.type_file }}
         run: |
-           mkdir -p ./build
-           mkdir -p ./rootfs
+          mkdir -p ./build
+          mkdir -p ./rootfs
+          
            if [ $(echo ${{ github.event.inputs.img_url }} | grep "drive.") ]; then
            if [ $(echo ${{ github.event.inputs.img_url }} | awk -F "/" '{print $6}') ]; then
             link_gdrive=$(echo ${{ github.event.inputs.img_url }} | awk -F "/" '{print $6}')
