@@ -132,6 +132,7 @@ jobs:
       - name: Extract firmware
         id: extract
         run: |  
+             sudo mkdir -p build
              cd build
              sudo mkdir -p boot rootfs img
              if [ ${{ github.event.inputs.type_file }} = "img.gz" ]; then
