@@ -105,11 +105,8 @@ jobs:
 
       - name: Unduh dan pindahkan rootfs tambahan
         run: |
-          echo "Mulai mengunduh rootfs tambahan..."
-          mkdir -p ./build
-          
-          echo "Membuat direktori rootfs jika belum ada..."
-          mkdir -p ./rootfs
+          echo "buat folder..."
+          sudo mkdir -p build rootfs
           
       - name: Download file ${{ github.event.inputs.type_file }}
         run: |
