@@ -71,18 +71,24 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       
-      - name: Cleanup and Installing Prerequisites
+      - name: Initialization environment (normal)
+        # if: github.event.inputs.target != 'all' && !cancelled()
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi `docker images -q`
-          sudo -E apt-get update
-          sudo -E apt-get -y install lolcat build-essential clang flex bison g++ gawk gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file wget
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
+          sudo apt-get -qq update
+          sudo apt-get -qq install build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip tar gzip qemu-utils mkisofs
+          sudo apt-get -qq install jq python3 python3-pip
+          pip install telethon
+          pip install colorama
           sudo pip3 install gdown
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
           wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_24.04_amd64.deb"
+          sudo timedatectl set-timezone "$TZ"
+          echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+          echo -e "[\033[94m INFO \033[0m] TARGET: ${{ matrix.target }}"
+          echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
       - name: Mengatur tanggal
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
