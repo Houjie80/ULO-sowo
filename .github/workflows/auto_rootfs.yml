@@ -85,9 +85,6 @@ jobs:
           sudo pip3 install git+https://github.com/Juvenal-Yescas/mediafire-dl
           wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb && sudo apt install "$PWD/megacmd-xUbuntu_24.04_amd64.deb"
           sudo timedatectl set-timezone "$TZ"
-          echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
-          echo -e "[\033[94m INFO \033[0m] TARGET: ${{ matrix.target }}"
-          echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - name: Mengatur tanggal
         id: date
